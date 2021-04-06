@@ -17,10 +17,13 @@ Workflow:
 Movie Management System: 
 
 User Menu - Default view of the library will be the user screen
+
     a. Get a list of the available movies
     b. Query movies by genre
     c. Selected movies logs will be printed to Text file for user (receipt)
+    
 Admin Menu - Menu Selection Log-in
+
     1. Admin log-in menu and credentials check
       a. Get a list of the available movies
       b. Update movie data entries
