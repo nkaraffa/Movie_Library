@@ -16,9 +16,8 @@ Brief Description:
   The interactive library will be able to get, update, add, delete, and query movies by genre. The user will only be able to get, query, and log movies from the User view.  The   Admin view will allow the user to get, update, add, delete, and query movies by genre.
   
 
-Workflow: 
+Workflow (Movie Management System): 
 
-  Movie Management System: 
 
   User Menu - Default view of the library will be the user screen
 
