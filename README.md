@@ -1,5 +1,5 @@
 # Movie_Library
-Project that creates a movie library and checkout interface.
+Movie App Project. Contains CRUD functionality for a movie, user profile, check out SQL database.
 
 _________________________
 
@@ -33,7 +33,7 @@ Workflow (Movie Management System):
     2. Check Out Log Query
       a. Get a list of currently checked out movies by User ID (unique to each user profile)
       
-    3. Check Out Movies & Save to SQL
+    3. Check Out Movies & Save to SQL (CRUD)
       a. Selected movies logs will be printed to the screen for user (receipt)
       b. User selection (shopping cart) is saved to SQL database once checked out
       c. Check Out Log is updated for user
