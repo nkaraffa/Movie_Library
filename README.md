@@ -20,7 +20,7 @@ Workflow (Movie Management System):
 
   Log-on Menu
   
-    a. Displays current movies in store on main screen
+    a. Displays a few current movies in store on main screen
     b. Log-in menu and credentials check
     c. Sends user to either the User or Admin portal
 
