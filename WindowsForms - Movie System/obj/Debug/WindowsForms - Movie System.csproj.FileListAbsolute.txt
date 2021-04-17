@@ -1,0 +1,5 @@
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\WindowsForms - Movie System\obj\Debug\WindowsForms - Movie System.csprojAssemblyReference.cache
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\WindowsForms - Movie System\obj\Debug\WindowsForms___Movie_System.Bloc_Buster_Form.resources
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\WindowsForms - Movie System\obj\Debug\WindowsForms___Movie_System.Properties.Resources.resources
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\WindowsForms - Movie System\obj\Debug\WindowsForms - Movie System.csproj.GenerateResource.cache
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\WindowsForms - Movie System\obj\Debug\WindowsForms - Movie System.csproj.CoreCompileInputs.cache

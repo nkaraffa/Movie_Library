@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CheckOut">
+          <Key>
+            <PropertyRef Name="CheckOut ID" />
+          </Key>
+          <Property Name="CheckOut ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Movie ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Due Date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="Movie ID" />
+          </Key>
+          <Property Name="Movie ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Release Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Studio" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User ID" />
+          </Key>
+          <Property Name="User ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="First Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CheckOut_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Movie ID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="Movie ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckOut_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User ID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="User ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="CheckOut" EntityType="Self.CheckOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CheckOut_Movies" Association="Self.FK_CheckOut_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="CheckOut" EntitySet="CheckOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckOut_User" Association="Self.FK_CheckOut_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="CheckOut" EntitySet="CheckOut" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CheckOut">
+          <Key>
+            <PropertyRef Name="CheckOut_ID" />
+          </Key>
+          <Property Name="CheckOut_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Movie_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Due_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Movy" Relationship="Self.FK_CheckOut_Movies" FromRole="CheckOut" ToRole="Movies" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CheckOut_User" FromRole="CheckOut" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Movy">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Release_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Studio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CheckOuts" Relationship="Self.FK_CheckOut_Movies" FromRole="Movies" ToRole="CheckOut" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CheckOuts" Relationship="Self.FK_CheckOut_User" FromRole="User" ToRole="CheckOut" />
+        </EntityType>
+        <Association Name="FK_CheckOut_Movies">
+          <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+          <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckOut_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Movie_LogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
+          <EntitySet Name="Movies" EntityType="Self.Movy" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_CheckOut_Movies" Association="Self.FK_CheckOut_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="CheckOut" EntitySet="CheckOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckOut_User" Association="Self.FK_CheckOut_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CheckOut" EntitySet="CheckOuts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Movie_LogEntities">
+          <EntitySetMapping Name="CheckOuts">
+            <EntityTypeMapping TypeName="Model.CheckOut">
+              <MappingFragment StoreEntitySet="CheckOut">
+                <ScalarProperty Name="CheckOut_ID" ColumnName="CheckOut ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie ID" />
+                <ScalarProperty Name="Due_Date" ColumnName="Due Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="Model.Movy">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Release_Date" ColumnName="Release Date" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Studio" ColumnName="Studio" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

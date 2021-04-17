@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Movie_LogEntities">
+    <EntitySetMapping Name="CheckOuts">
+      <EntityTypeMapping TypeName="Model.CheckOut">
+        <MappingFragment StoreEntitySet="CheckOut">
+          <ScalarProperty Name="CheckOut_ID" ColumnName="CheckOut ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="Movie_ID" ColumnName="Movie ID" />
+          <ScalarProperty Name="Due_Date" ColumnName="Due Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="Model.Movy">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="Movie_ID" ColumnName="Movie ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Release_Date" ColumnName="Release Date" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="Studio" ColumnName="Studio" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

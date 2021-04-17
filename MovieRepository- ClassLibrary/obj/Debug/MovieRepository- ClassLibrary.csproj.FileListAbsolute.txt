@@ -1,0 +1,5 @@
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\MovieRepository- ClassLibrary\obj\Debug\MovieRepository- ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\MovieRepository- ClassLibrary\bin\Debug\MovieRepository- ClassLibrary.dll
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\MovieRepository- ClassLibrary\bin\Debug\MovieRepository- ClassLibrary.pdb
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\MovieRepository- ClassLibrary\obj\Debug\MovieRepository- ClassLibrary.dll
+C:\Users\Nik\Desktop\Coding\MSCA - Projects\Movie Library Project\MovieRepository- ClassLibrary\obj\Debug\MovieRepository- ClassLibrary.pdb

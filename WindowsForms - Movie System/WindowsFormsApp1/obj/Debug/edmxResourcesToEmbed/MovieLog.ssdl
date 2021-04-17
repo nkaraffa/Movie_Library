@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Movie Log.dbo.CheckOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CheckOut">
+    <Key>
+      <PropertyRef Name="User ID" />
+      <PropertyRef Name="Movie ID" />
+      <PropertyRef Name="Due Date" />
+    </Key>
+    <Property Name="User ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Movie ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Due Date" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Movie ID" />
+    </Key>
+    <Property Name="Movie ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Release Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Studio" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User ID" />
+    </Key>
+    <Property Name="User ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="User Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="First Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CheckOut_Movies">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movie ID" />
+      </Principal>
+      <Dependent Role="CheckOut">
+        <PropertyRef Name="Movie ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckOut_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User ID" />
+      </Principal>
+      <Dependent Role="CheckOut">
+        <PropertyRef Name="User ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CheckOut" EntityType="Self.CheckOut" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CheckOut].[User ID] AS [User ID], 
+    [CheckOut].[Movie ID] AS [Movie ID], 
+    [CheckOut].[Due Date] AS [Due Date]
+    FROM [dbo].[CheckOut] AS [CheckOut]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_CheckOut_Movies" Association="Self.FK_CheckOut_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="CheckOut" EntitySet="CheckOut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckOut_User" Association="Self.FK_CheckOut_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="CheckOut" EntitySet="CheckOut" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

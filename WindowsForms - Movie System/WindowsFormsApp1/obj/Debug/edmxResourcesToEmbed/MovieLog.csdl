@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Movy">
+    <Key>
+      <PropertyRef Name="Movie_ID" />
+    </Key>
+    <Property Name="Movie_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Release_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Studio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CheckOuts" Relationship="Self.FK_CheckOut_Movies" FromRole="Movies" ToRole="CheckOut" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CheckOuts" Relationship="Self.FK_CheckOut_User" FromRole="User" ToRole="CheckOut" />
+  </EntityType>
+  <EntityType Name="CheckOut">
+    <Key>
+      <PropertyRef Name="User_ID" />
+      <PropertyRef Name="Movie_ID" />
+      <PropertyRef Name="Due_Date" />
+    </Key>
+    <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Movie_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Due_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK_CheckOut_Movies" FromRole="CheckOut" ToRole="Movies" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CheckOut_User" FromRole="CheckOut" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_CheckOut_Movies">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movie_ID" />
+      </Principal>
+      <Dependent Role="CheckOut">
+        <PropertyRef Name="Movie_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckOut_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="CheckOut">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Movie_LogEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Movies" EntityType="Self.Movy" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
+    <AssociationSet Name="FK_CheckOut_Movies" Association="Self.FK_CheckOut_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="CheckOut" EntitySet="CheckOuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckOut_User" Association="Self.FK_CheckOut_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CheckOut" EntitySet="CheckOuts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
